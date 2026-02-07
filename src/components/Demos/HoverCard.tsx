@@ -1,13 +1,10 @@
-import { useState } from "react";
 import { CreditCard, type CreditCardProps } from "credit-card-ui-react";
 
 export function HoverCard(props: CreditCardProps) {
-  const [flipped, setFlipped] = useState(false);
-
   return (
     <CreditCard
       {...props}
-      isFlipped={flipped}
+      isFlipped={false}
       className={`${props.className ?? ""}`}
       classNames={{
         ...props.classNames,

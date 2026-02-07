@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function useScrollAnimations() {
-  useEffect(() => {
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       // -----------------------------------------
       // 1. Section reveals (data-animate)
@@ -27,18 +27,20 @@ export function useScrollAnimations() {
         });
 
         if (header) {
-          tl.from(header, {
-            x: -60,
-            opacity: 0,
+          gsap.set(header, { opacity: 0, x: -60 });
+          tl.to(header, {
+            x: 0,
+            opacity: 1,
             duration: 0.8,
             ease: "power3.out",
           });
         }
 
         if (content) {
-          tl.from(content, {
-            x: 60,
-            opacity: 0,
+          gsap.set(content, { opacity: 0, x: 60 });
+          tl.to(content, {
+            x: 0,
+            opacity: 1,
             duration: 0.8,
             ease: "power3.out",
           }, "-=0.5");
@@ -46,9 +48,10 @@ export function useScrollAnimations() {
 
         // Fallback: no split markers → classic fade-up
         if (!header && !content) {
-          tl.from(sectionEl, {
-            y: 60,
-            opacity: 0,
+          gsap.set(sectionEl, { opacity: 0, y: 60 });
+          tl.to(sectionEl, {
+            y: 0,
+            opacity: 1,
             duration: 0.8,
             ease: "power3.out",
           });
@@ -77,6 +80,11 @@ export function useScrollAnimations() {
         const items = gsap.utils.toArray<HTMLElement>("[data-partner-item]");
         const divider = partnersSection.querySelector(".h-px");
 
+        // Set initial hidden states immediately
+        if (divider) gsap.set(divider, { scaleX: 0, transformOrigin: "left" });
+        if (label) gsap.set(label, { opacity: 0, y: 20 });
+        if (items.length) gsap.set(items, { opacity: 0, y: 30 });
+
         const ptl = gsap.timeline({
           scrollTrigger: {
             trigger: partnersSection,
@@ -86,15 +94,15 @@ export function useScrollAnimations() {
         });
 
         if (divider) {
-          ptl.from(divider, { scaleX: 0, transformOrigin: "left", duration: 0.6 });
+          ptl.to(divider, { scaleX: 1, duration: 0.6 });
         }
         if (label) {
-          ptl.from(label, { y: 20, opacity: 0, duration: 0.4 }, "-=0.2");
+          ptl.to(label, { y: 0, opacity: 1, duration: 0.4 }, "-=0.2");
         }
         if (items.length) {
-          ptl.from(items, {
-            y: 30,
-            opacity: 0,
+          ptl.to(items, {
+            y: 0,
+            opacity: 1,
             stagger: 0.07,
             duration: 0.5,
             ease: "power3.out",
@@ -107,20 +115,17 @@ export function useScrollAnimations() {
       // -----------------------------------------
       const titles = gsap.utils.toArray<HTMLElement>("[data-reveal-title]");
       titles.forEach((title) => {
-        gsap.fromTo(
-          title,
-          { clipPath: "inset(0 0 100% 0)" },
-          {
-            clipPath: "inset(0 0 0% 0)",
-            duration: 0.8,
-            ease: "power3.inOut",
-            scrollTrigger: {
-              trigger: title,
-              start: "top 85%",
-              once: true,
-            },
-          }
-        );
+        gsap.set(title, { clipPath: "inset(0 0 100% 0)" });
+        gsap.to(title, {
+          clipPath: "inset(0 0 0% 0)",
+          duration: 0.8,
+          ease: "power3.inOut",
+          scrollTrigger: {
+            trigger: title,
+            start: "top 85%",
+            once: true,
+          },
+        });
       });
     });
 

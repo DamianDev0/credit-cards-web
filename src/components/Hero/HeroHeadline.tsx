@@ -1,6 +1,6 @@
 export function HeroHeadline() {
   return (
-    <div data-hero-headline className="flex flex-col">
+    <div data-hero-headline className="invisible flex flex-col">
       <h1 className="font-body text-4xl font-black leading-none tracking-tight text-(--color-text-white) sm:text-5xl md:text-[7vw]">
         The smartest way
       </h1>

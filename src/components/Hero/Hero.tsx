@@ -20,7 +20,7 @@ export function Hero() {
       </div>
 
       {/* Description + CTA */}
-      <div data-hero-description className="relative z-10 mt-8 flex max-w-[55%] flex-col gap-4 sm:mt-10 sm:max-w-105 sm:gap-5">
+      <div data-hero-description className="invisible relative z-10 mt-8 flex max-w-[55%] flex-col gap-4 sm:mt-10 sm:max-w-105 sm:gap-5">
         <div className="h-px w-14 bg-(--color-accent)/30" />
         <p className="font-body text-sm leading-[1.7] text-(--color-text-gray) sm:text-[15px]">
           The most complete React library for credit card UIs. Real-time brand

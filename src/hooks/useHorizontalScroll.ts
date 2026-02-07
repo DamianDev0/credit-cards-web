@@ -1,4 +1,4 @@
-import { useEffect, type RefObject } from "react";
+import { useLayoutEffect, type RefObject } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
  * Only activates on screens >= 1024px; stacks vertically below.
  */
 export function useHorizontalScroll(containerRef: RefObject<HTMLElement | null>) {
-  useEffect(() => {
+  useLayoutEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
@@ -62,9 +62,10 @@ export function useHorizontalScroll(containerRef: RefObject<HTMLElement | null>)
         // Mobile: vertical fade-up reveals
         "(max-width: 1023px)": () => {
           panels.forEach((panel) => {
-            gsap.from(panel, {
-              y: 60,
-              opacity: 0,
+            gsap.set(panel, { opacity: 0, y: 60 });
+            gsap.to(panel, {
+              y: 0,
+              opacity: 1,
               duration: 0.8,
               ease: "power3.out",
               scrollTrigger: {

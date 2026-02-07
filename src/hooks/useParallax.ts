@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
  * Speed value: 0.1 = subtle, 1.0 = strong movement.
  */
 export function useParallax() {
-  useEffect(() => {
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const elements = gsap.utils.toArray<HTMLElement>("[data-parallax-speed]");
 

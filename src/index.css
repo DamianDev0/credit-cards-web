@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+:root {
+  --color-bg-dark-primary: #07060B;
+  --color-bg-dark-secondary: #0C0A12;
+  --color-accent: #A78BFA;
+  --color-accent-dim: #7C5AE6;
+  --color-text-gray: #8B8B9E;
+  --color-text-muted: #5E5E72;
+  --color-text-white: #F0EEFF;
+  --color-card-dark: #0F0D17;
+  --color-glass-border: #A78BFA18;
+  --color-glass-bg: #A78BFA08;
+  --color-border: #1C1A28;
+  --color-glow: #8B5CF6;
+}
+
+@layer base {
+  body {
+    margin: 0;
+    background: var(--color-bg-dark-primary);
+  }
+
+  .font-heading {
+    font-family: "Inter", sans-serif;
+  }
+
+  .font-pixel {
+    font-family: "Silkscreen", cursive;
+  }
+
+  .font-body {
+    font-family: "Inter", sans-serif;
+  }
+
+  .font-mono {
+    font-family: "Space Mono", monospace;
+  }
+}
+
+/* Library form overrides for dark background */
+form input,
+form select {
+  color: white !important;
+  background: transparent !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+form input::placeholder {
+  color: rgba(255, 255, 255, 0.25) !important;
+}
+
+form label {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+form button[type="submit"] {
+  background: rgba(255, 255, 255, 0.06) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: white !important;
+  box-shadow: none !important;
+  transition: all 0.2s ease !important;
+}
+
+form button[type="submit"]:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}

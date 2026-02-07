@@ -15,6 +15,17 @@ export function Footer() {
         {/* Right: social links */}
         <div className="flex items-center gap-5">
           <a
+            href="https://www.npmjs.com/package/credit-card-ui-react"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-(--color-text-muted) transition-colors hover:text-(--color-text-white)"
+            aria-label="npm"
+          >
+            <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323h13.837v13.354h-3.464V8.691h-3.46v10.066H5.13z" />
+            </svg>
+          </a>
+          <a
             href="https://github.com/DamianDev0"
             target="_blank"
             rel="noopener noreferrer"
